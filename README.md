@@ -11,6 +11,7 @@ These instructions will get you a copy of the project up and running on your loc
 What things you need to install and how to install them
 
 Node js v11.10 : https://nodejs.org
+
 Discord : https://discordapp.com/download
 
 ### Installing
