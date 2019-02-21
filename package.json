@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MiniJez/Discord-bot-change-on-calendar.git"
+    "url": "git+https://github.com/MiniJez/Discord-bot-displaying-epsi-calendar-changes"
   },
   "author": "MiniJez",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/MiniJez/Discord-bot-change-on-calendar/issues"
+    "url": "https://github.com/MiniJez/Discord-bot-displaying-epsi-calendar-changes/issues"
   },
-  "homepage": "https://github.com/MiniJez/Discord-bot-change-on-calendar#readme",
+  "homepage": "https://github.com/MiniJez/Discord-bot-displaying-epsi-calendar-changes#readme",
   "dependencies": {
     "discord.js": "^11.4.2",
     "jquery": "^1.7.4",
