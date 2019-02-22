@@ -51,4 +51,4 @@ npm start
 
 ## License
 
-This project is open source !
+This project is under MIT License. See LICENCE.md
