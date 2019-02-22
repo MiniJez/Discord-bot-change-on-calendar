@@ -7,7 +7,7 @@ const jsdom = require('jsdom');
 const fs = require('fs');
 
 async function jokeOfTheDay () {
-    const task = cron.schedule('15 8 * * *', async () => {
+    const task = cron.schedule('15 7 * * *', async () => {
         const htmlBody = await bot.getData('http://blague.dumatin.fr/');
 
         const { JSDOM } = jsdom;
@@ -32,7 +32,7 @@ async function jokeOfTheDay () {
 }
 
 async function compareData () {
-    const task = cron.schedule('*/30 7-18 * * *', async () => {
+    const task = cron.schedule('*/30 6-17 * * *', async () => {
         const data = fs.readFileSync('./data/schedules.json');
         const savedData = JSON.parse(data);
 
@@ -75,7 +75,7 @@ async function compareData () {
 }
 
 async function save2WeekInLocalData () {
-    const task = cron.schedule('1 0 * * *', async () => {
+    const task = cron.schedule('1 23 * * *', async () => {
         let schedule = { 'data': [] };
 
         const today = moment();
