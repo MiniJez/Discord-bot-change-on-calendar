@@ -15,12 +15,12 @@ client.once('ready', () => {
 });
 
 client.login(config.token).then(() => {
-    console.log('You are connected !');
+    console.log('You are connected!');
 });
 
 scheduledTask.jokeOfTheDay();
 scheduledTask.save2WeekInLocalData();
-scheduledTask.compareData();
+scheduledTask.compareSchedules();
 
 client.on('message', message => {
     const today = moment();

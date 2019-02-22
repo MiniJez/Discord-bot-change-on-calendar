@@ -31,7 +31,7 @@ async function jokeOfTheDay () {
     task.start();
 }
 
-async function compareData () {
+async function compareSchedules () {
     const task = cron.schedule('*/30 6-17 * * *', async () => {
         const data = fs.readFileSync('./data/schedules.json');
         const savedData = JSON.parse(data);
@@ -41,8 +41,7 @@ async function compareData () {
 
         schedule = await fetchData(today.clone(), today.weekday(), schedule);
         schedule = await fetchData(today.clone().weekday(7), 0, schedule);
-        schedule.data[0].matiere = 'mon cul';
-        schedule.data[4].matiere = 'ma bite';
+
         const indexOfDataChange = [];
         for (let i = 0; i < savedData.data.length; i++) {
             if (JSON.stringify(savedData.data[i]) !== JSON.stringify(schedule.data[i])) {
@@ -85,7 +84,7 @@ async function save2WeekInLocalData () {
 
         const writeData = JSON.stringify(schedule);
         fs.writeFile('./data/schedules.json', writeData, () => {
-            console.log('Successful saving schedule !');
+            console.log('Successful saving schedule!');
         });
     });
 
@@ -141,4 +140,4 @@ function fetchDomElement (schedule, htmlBody, date) {
 
 module.exports.jokeOfTheDay = jokeOfTheDay;
 module.exports.save2WeekInLocalData = save2WeekInLocalData;
-module.exports.compareData = compareData;
+module.exports.compareSchedules = compareSchedules;
