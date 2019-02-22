@@ -27,15 +27,11 @@ Create a new bot : https://discordapp.com/developers/applications/ click 'New Ap
 
 Get the client secret of your bot (don't share it, otherwise everybody will be able to manage your bot).
 
-Create a new config file. In the root, config/config.js
+Create a new .env file in the root of your project.
 
-Export you client secret : 
+Export you client secret in the .env file (without quotes): 
 ```
-const config = {
-    token: 'your-client-secret-goes-here'
-};
-
-module.exports = config;
+TOKEN=your-token-goes-here
 ```
 
 Add your bot to a server.
@@ -46,7 +42,7 @@ More informations about creating bot and getting token : https://github.com/reac
 
 To deploy :
 ```
-npm run start
+npm start
 ```
 
 ## Authors
