@@ -75,7 +75,11 @@ async function compareSchedulesTask () {
 
 async function saveDataTask () {
     save2WeekInLocalData();
-    const task = cron.schedule('0 3 * * *', save2WeekInLocalData());
+
+    const task = cron.schedule('0 3 * * *', async () => {
+        save2WeekInLocalData();
+    });
+
     task.start();
 }
 
