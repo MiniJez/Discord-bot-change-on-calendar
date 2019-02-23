@@ -18,10 +18,6 @@ client.login(config.token).then(() => {
     console.log('You are connected!');
 });
 
-scheduledTask.jokeOfTheDay();
-scheduledTask.save2WeekInLocalData();
-scheduledTask.compareSchedules();
-
 client.on('message', message => {
     const today = moment();
     let date;
@@ -47,6 +43,7 @@ client.on('message', message => {
         break;
     case '!infos':
         message.channel.send('Ce bot discord à pour objectif d\'éviter au __maximum__ d\'utiliser ce fabuleux outil qu\'est ~~je vous pisse dessus sans même vous faire croire qu\'il pleut~~ BEECOME.\n\nCe que je sais faire :\n\n!today\n!tomorrow\n!week\n!nextweek\n!infos\n\nJe vous préviens également de chaque changement dans l\'emplois du temps sur les 2 prochaines semaines !   :muscle::muscle:\nAlors, elle est pas belle la vie ?   :heart_eyes:\n\nJe suis __open source__ ! : Github https://github.com/MiniJez/Discord-bot-displaying-epsi-calendar-changes\nAuteur : Edouard CLISSON.');
+        break;
     }
 });
 
@@ -135,6 +132,10 @@ async function processForAWeekFixedDate (date, msg, message) {
         sendMessage(message, msg);
     }
 }
+
+scheduledTask.jokeOfTheDayTask();
+scheduledTask.saveDataTask();
+scheduledTask.compareSchedulesTask();
 
 module.exports.client = client;
 module.exports.getData = getData;
