@@ -6,7 +6,7 @@ const cron = require('node-cron');
 const jsdom = require('jsdom');
 const fs = require('fs');
 
-async function jokeOfTheDay () {
+async function jokeOfTheDayTask () {
     const task = cron.schedule('15 7 * * *', async () => {
         const htmlBody = await bot.getData('http://blague.dumatin.fr/');
 
@@ -31,7 +31,7 @@ async function jokeOfTheDay () {
     task.start();
 }
 
-async function compareSchedules () {
+async function compareSchedulesTask () {
     const task = cron.schedule('*/30 6-17 * * *', async () => {
         const data = fs.readFileSync('./data/schedules.json');
         const savedData = JSON.parse(data);
@@ -73,22 +73,22 @@ async function compareSchedules () {
     task.start();
 }
 
-async function save2WeekInLocalData () {
-    const task = cron.schedule('1 23 * * *', async () => {
-        let schedule = { 'data': [] };
-
-        const today = moment();
-
-        schedule = await fetchData(today.clone(), today.weekday(), schedule);
-        schedule = await fetchData(today.clone().weekday(7), 0, schedule);
-
-        const writeData = JSON.stringify(schedule);
-        fs.writeFile('./data/schedules.json', writeData, () => {
-            console.log('Successful saving schedule!');
-        });
-    });
-
+async function saveDataTask () {
+    save2WeekInLocalData();
+    const task = cron.schedule('0 3 * * *', save2WeekInLocalData());
     task.start();
+}
+
+async function save2WeekInLocalData () {
+    let schedule = { 'data': [] };
+
+    const today = moment();
+    schedule = await fetchData(today.clone(), today.weekday(), schedule);
+    schedule = await fetchData(today.clone().weekday(7), 0, schedule);
+    const writeData = JSON.stringify(schedule);
+    fs.writeFile('./data/schedules.json', writeData, () => {
+        console.log('Successful saving schedule!');
+    });
 }
 
 async function fetchData (date, dayOfWeek, schedule) {
@@ -138,6 +138,6 @@ function fetchDomElement (schedule, htmlBody, date) {
     return schedule;
 }
 
-module.exports.jokeOfTheDay = jokeOfTheDay;
-module.exports.save2WeekInLocalData = save2WeekInLocalData;
-module.exports.compareSchedules = compareSchedules;
+module.exports.jokeOfTheDayTask = jokeOfTheDayTask;
+module.exports.saveDataTask = saveDataTask;
+module.exports.compareSchedulesTask = compareSchedulesTask;
